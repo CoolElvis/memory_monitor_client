@@ -1,9 +1,5 @@
 # MemoryMonitorClient
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/memory_monitor_client`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -21,8 +17,10 @@ Or install it yourself as:
     $ gem install memory_monitor_client
 
 ## Usage
-
-TODO: Write usage instructions here
+```ruby
+config = { host: '127.0.0.1', port: 5555, period: 1 }
+MemoryMonitorClient.run(config)
+```    
 
 ## Development
 
@@ -32,5 +30,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/memory_monitor_client.
+Bug reports and pull requests are welcome on GitHub at https://github.com/coolelvis/memory_monitor_client.
 
