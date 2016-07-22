@@ -6,10 +6,9 @@ module MemoryMonitorClient
   def self.run(config)
     Thread.new do
       socket = UDPSocket.new
-      socket.connect(config[:host], config[:port])
 
       loop do
-        socket.send(JSON.dump(collect_data), 0)
+        socket.send(JSON.dump(collect_data), 0, config[:host], config[:port])
         sleep config[:period]
       end
     end
@@ -25,7 +24,7 @@ module MemoryMonitorClient
   end
 
   def self.rss
-    `ps -o rss #{Process.pid}`.split("\n").last.to_i / 1000
+    `ps -o rss #{Process.pid}`.split("\n").last.to_i / 1024
   end
 
   def self.gc_stat
