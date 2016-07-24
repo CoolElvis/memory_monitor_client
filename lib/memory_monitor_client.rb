@@ -3,12 +3,18 @@ require 'json'
 
 module MemoryMonitorClient
 
-  def self.run(config)
+  def self.run(config, &block)
     Thread.new do
       socket = UDPSocket.new
 
       loop do
-        socket.send(JSON.dump(collect_data), 0, config[:host], config[:port])
+        if block_given?
+          data = block.call(collect_data).merge(collect_data)
+        else
+          data = collect_data
+        end
+
+        socket.send(JSON.dump(data), 0, config[:host], config[:port])
         sleep config[:period]
       end
     end
