@@ -1,5 +1,6 @@
 require 'memory_monitor_client/version'
 require 'json'
+require 'socket'
 
 module MemoryMonitorClient
 
